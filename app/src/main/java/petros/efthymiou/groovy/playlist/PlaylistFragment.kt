@@ -30,11 +30,7 @@ class PlaylistFragment : Fragment() {
         Log.d("TAG", "onCreate")
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentPlaylistBinding.inflate(inflater, container, false)
         viewModel = ViewModelProvider(this, viewModelFactory).get(PlaylistViewModel::class.java)
 
@@ -55,23 +51,19 @@ class PlaylistFragment : Fragment() {
 
     private fun observePlaylist() {
         viewModel.playlists.observe(this as LifecycleOwner) { playlists ->
-            if (playlists.getOrNull() != null)
+            if (playlists.getOrNull() != null) {
                 setupList(playlists.getOrNull()!!)
-            else {
+            } else {
                 //TODO
             }
         }
     }
 
-
     private fun setupList(playlists: List<Playlist>) {
         with(binding.playlistsList) {
             layoutManager = LinearLayoutManager(context)
             adapter = MyPlaylistRecyclerViewAdapter(playlists) { playlistId ->
-                val action =
-                    PlaylistFragmentDirections.actionPlaylistFragmentToPlaylistDetailFragment(
-                        playlistId
-                    )
+                val action = PlaylistFragmentDirections.actionPlaylistFragmentToPlaylistDetailFragment(playlistId)
                 findNavController().navigate(action)
             }
         }
