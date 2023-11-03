@@ -1,2 +1,1 @@
-# Groovy
-Course: [Android TDD Masterclass](https://www.udemy.com/course/android-11-tdd-masterclass/)
+# Simple Android App build using HILT | TDD | MVVM
